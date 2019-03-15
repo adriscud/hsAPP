@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{card?.name}}
+    </ion-title>
+    <ion-buttons slot="start">
+    	<ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+	<div *ngIf="card">
+		<ion-card>
+			<img [src]="card.img" (error)="updateImage($event)">
+			<ion-card-content>
+				<ion-card-title>
+					{{card?.name}}
+				</ion-card-title>
+				<p>{{card?.playerClass}}</p>
+				<p>{{card?.cardSet}}</p>
+				<ion-card-title>
+					<span class='card-stats-title'>Stats</span>
+				</ion-card-title>
+				
+				<p *ngIf="card.cardId"><b>Id: </b> {{card.cardId}}</p>
+				<p *ngIf="card.type"><b>Type: </b> {{card.type}}</p>
+				<p *ngIf="card.text"><b>Description: </b> {{card.text}}</p>
+				
+			</ion-card-content>
+		</ion-card>
+	</div>
+</ion-content>
