@@ -17,6 +17,7 @@ export class CardListingPage {
 	cardDeckGroup: string;
 	cardDeck: string;
 	cards: Card[] = [];
+  copyOfCards: Card[] = [];
 
   loader: any;
 
@@ -29,16 +30,17 @@ export class CardListingPage {
   private getCards() {
     this.loaderService.presentLoading();
 
-    /*this.cardService.getCardsByDeck(this.cardDeckGroup, this.cardDeck).subscribe(
+    this.cardService.getCardsByDeck(this.cardDeckGroup, this.cardDeck).subscribe(
       (cards:Card[]) => {
         this.cards = cards.map((card:Card) => {
           card.text = this.cardService.replaceCardTextLine(card.text);
           return card;
         });
+        this.copyOfCards = Array.from(this.cards);
         this.loaderService.dimissLoading();
       }, () => {
         this.loaderService.dimissLoading();
-        this.toaster.presentErrorToast('Uuuuuppps cards could not be loaded, lets try to refresh page')})*/
+        this.toaster.presentErrorToast('Uuuuuppps cards could not be loaded, lets try to refresh page')})
   }
 
   ionViewWillEnter(){
@@ -51,5 +53,8 @@ export class CardListingPage {
   doRefresh(event){
     this.getCards();
     event.target.complete();
+  }
+  hydrateCards(cards: Card[]){
+    this.cards = cards;
   }
 }
