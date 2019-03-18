@@ -21,4 +21,5 @@ export interface Card {
 	text: string;
 	//rarity: string;
 	type: string;
+	favorite:boolean;
 }
