@@ -28,6 +28,8 @@ export class CardListingPage {
 
   favoriteCardSub: Subscription;
 
+  limit: number = 20;
+
   loader: any;
 
   constructor(private route: ActivatedRoute,
@@ -52,8 +54,8 @@ export class CardListingPage {
     }
 
 
-  private getCards() {
-    this.loaderService.presentLoading();
+  private async getCards() {
+    await this.loaderService.presentLoading();
 
     this.cardService.getCardsByDeck(this.cardDeckGroup, this.cardDeck).subscribe(
       (cards:Card[]) => {
@@ -94,5 +96,9 @@ export class CardListingPage {
   }
   favoriteCard(card:Card){
     this.favoriteCardStore.toggleCard(card);
+  }
+
+  loadData(infiniteScroll){
+    this.limit +=20;
   }
 }

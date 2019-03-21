@@ -22,17 +22,20 @@ export class CardDetailPage  {
 
 
   ionViewWillEnter(){
-  	const cardId = this.route.snapshot.paramMap.get('cardId');
-  	this.loaderService.presentLoading();
-  	this.cardService.getCardById(cardId).subscribe(
-  		(cards:Card[]) => {
-  			this.card = cards.map((card:Card) => {
-  				card.text = this.cardService.replaceCardTextLine(card.text);
-  				return card;
-  			})[0];
-  			this.loaderService.dimissLoading();
-  		})
-  	
+    this.getCard();
+  }
+  async getCard(){
+
+    const cardId = this.route.snapshot.paramMap.get('cardId');
+    await this.loaderService.presentLoading();
+    this.cardService.getCardById(cardId).subscribe(
+      (cards:Card[]) => {
+        this.card = cards.map((card:Card) => {
+          card.text = this.cardService.replaceCardTextLine(card.text);
+          return card;
+        })[0];
+        this.loaderService.dimissLoading();
+      })
   }
   updateImage(){
   	this.card.img = 'assets/image/DefaultCard.png'

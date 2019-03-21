@@ -20,7 +20,7 @@ export class AppComponent {
     private toaster: ToastService,
   ) {
     this.initializeApp();
-    this.notificationSetup();
+    
   }
   
   private notificationSetup(){
@@ -35,6 +35,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.notificationSetup();
     });
   }
 }

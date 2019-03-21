@@ -16,7 +16,7 @@ export class FcmService {
 				token = await this.firebase.getToken();
 			}
 
-			if(this.platform.is('android')){
+			if(this.platform.is('ios')){
 				token = await this.firebase.getToken();
 				await this.firebase.grantPermission();
 			}
