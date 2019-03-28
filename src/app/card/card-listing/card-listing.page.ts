@@ -99,6 +99,10 @@ export class CardListingPage {
   }
 
   loadData(infiniteScroll){
-    this.limit +=20;
+    setTimeout(() => {
+      this.limit +=20;
+      infiniteScroll.target.complete();  
+    })
+    
   }
 }

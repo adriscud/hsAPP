@@ -18,6 +18,7 @@ import { Firebase } from '@ionic-native/firebase/ngx';
 
 import { FcmService } from './shared/service/fcm.service';
 import {ToastService} from './shared/service/toast.service';
+import { FavoriteCardStore } from './card/shared/card-favorite.store';
 
 const config = {
     apiKey: "AIzaSyD7nOczb9CqSwFnYbsnvJjSLrjWcMLiBII",
@@ -46,6 +47,7 @@ const config = {
     Firebase,
     FcmService,
     ToastService,
+    FavoriteCardStore,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
